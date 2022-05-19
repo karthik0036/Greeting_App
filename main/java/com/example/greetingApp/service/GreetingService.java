@@ -1,9 +1,11 @@
 package com.example.greetingApp.service;
 
 import com.example.greetingApp.model.Greeting;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+@Service
 public class GreetingService implements IGreetingService{
     private static final String template = "Hello world";
     private final AtomicLong counter = new AtomicLong();

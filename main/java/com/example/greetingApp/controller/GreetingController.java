@@ -2,6 +2,7 @@ package com.example.greetingApp.controller;
 
 
 import com.example.greetingApp.model.Greeting;
+import com.example.greetingApp.service.GreetingService;
 import com.example.greetingApp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,17 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
+    @Autowired
+    private GreetingService greetingService;
 
+    /*
+       *curl localhost:8080/greeting/service
+       @return={id =1 , content="hello world!}
+        */
+    @GetMapping("/service")
+    public Greeting greeting() {
+        return greetingService.greetingMessage();
+
+    }
 
 }
