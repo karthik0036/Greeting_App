@@ -1,20 +1,19 @@
 package com.example.greetingApp.controller;
 
 
+import com.example.greetingApp.dto.UserDto;
 import com.example.greetingApp.model.Greeting;
 import com.example.greetingApp.service.GreetingService;
 import com.example.greetingApp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class GreetingController {
     private static final String template = "Hello, %s!";
+    private static final String template2 = "Hello, %s , %s!";
     private final AtomicLong counter = new AtomicLong();
 
     /*
@@ -48,6 +47,11 @@ public class GreetingController {
     public Greeting greeting() {
         return greetingService.greetingMessage();
 
+    }
+
+    @PostMapping("/greeting")
+    public String greetingMessage(@RequestBody UserDto userDto) {
+        return greetingService.greetingMessageByName(userDto);
     }
 
 }
