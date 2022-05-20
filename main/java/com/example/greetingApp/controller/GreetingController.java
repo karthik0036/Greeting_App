@@ -3,6 +3,8 @@ package com.example.greetingApp.controller;
 
 import com.example.greetingApp.dto.UserDto;
 import com.example.greetingApp.model.Greeting;
+import com.example.greetingApp.model.User;
+import com.example.greetingApp.repository.IGreetingRepository;
 import com.example.greetingApp.service.GreetingService;
 import com.example.greetingApp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +39,13 @@ public class GreetingController {
     }
 
     @Autowired
-    private GreetingService greetingService;
+    private IGreetingService greetingService;
 
     /*
        *curl localhost:8080/greeting/service
        @return={id =1 , content="hello world!}
         */
-    @GetMapping("/service")
+    @GetMapping("greeting/service")
     public Greeting greeting() {
         return greetingService.greetingMessage();
 
@@ -53,5 +55,6 @@ public class GreetingController {
     public String greetingMessage(@RequestBody UserDto userDto) {
         return greetingService.greetingMessageByName(userDto);
     }
+
 
 }
