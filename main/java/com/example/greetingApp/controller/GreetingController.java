@@ -38,7 +38,7 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
-    @Autowired
+    @Autowired(required = false)
     private IGreetingService greetingService;
 
     /*
@@ -55,6 +55,13 @@ public class GreetingController {
     public String greetingMessage(@RequestBody UserDto userDto) {
         return greetingService.greetingMessageByName(userDto);
     }
+
+    @GetMapping("/find")
+    public User findGreetById(@RequestParam long id) {
+
+        return greetingService.getById(id);
+    }
+
 
 
 }
