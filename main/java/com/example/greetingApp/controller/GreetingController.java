@@ -10,6 +10,7 @@ import com.example.greetingApp.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -60,6 +61,11 @@ public class GreetingController {
     public User findGreetById(@RequestParam long id) {
 
         return greetingService.getById(id);
+    }
+
+    @GetMapping("/allgreetings")
+    public List<User> findAllGreeting() {
+        return greetingService.getAllGreetingMessages();
     }
 
 
